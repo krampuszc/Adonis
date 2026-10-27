@@ -72,6 +72,7 @@ return function(Vargs, GetEnv)
 		RunLast = RunLast;
 		RunAfterLoaded = RunAfterLoaded;
 		CodeName = "";
+		CommandBoxOnSpawn = false;
 		UIKeepAlive = true;
 		KeybindsEnabled = true;
 		ParticlesEnabled = true;

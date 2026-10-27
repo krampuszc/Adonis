@@ -86,6 +86,7 @@ return {
 
 	Console = true;				-- Whether the command console is enabled
 	Console_AdminsOnly = false; -- If true, only admins will be able to access the console
+	CommandBoxOnSpawn = false;		-- If true, the command box will open automatically when a player spawns
 
 	HelpSystem = true;	-- Allows players to call admins for help using !help
 	HelpButton = true;	-- Shows a little help button in the bottom right corner.

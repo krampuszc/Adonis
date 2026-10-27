@@ -88,6 +88,7 @@ return {
 	"PlayerList";
 	"Console";
 	"Console_AdminsOnly";
+	"CommandBoxOnSpawn";
 	" ";
 	"HelpSystem";
 	"HelpButton";

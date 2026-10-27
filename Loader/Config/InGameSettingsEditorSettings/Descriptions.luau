@@ -96,6 +96,7 @@ return {
 
 	Console = [[ Command console ]];
 	Console_AdminsOnly = [[ Makes it so if the console is enabled, only admins will see it ]];
+	CommandBoxOnSpawn = [[ If true, the command box will open automatically when a player spawns ]];
 
 	DonorCommands = [[ Show your support for the script and let donors use commands like !sparkles ]];
 	DonorCapes = [[ Determines if donors have capes ]];

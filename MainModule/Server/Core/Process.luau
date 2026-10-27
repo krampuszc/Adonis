@@ -1002,6 +1002,7 @@ return function(Vargs, GetEnv)
 			local PlayerData = Core.GetPlayer(p)
 			local level, rank = Admin.GetLevel(p)
 			local key = tostring(p.UserId)
+			local pdata = Core.GetPlayer(p)
 
 			--// Fire player added
 			service.Events.PlayerAdded:Fire(p)
@@ -1070,6 +1071,22 @@ return function(Vargs, GetEnv)
 					--// probably could make this RefreshGui instead of MakeGui down the road
 					if Settings.Console and (not Settings.Console_AdminsOnly or level > 0) then
 						Remote.MakeGui(p, "Console")
+					end
+
+					local CommandBoxSettingForPlayer
+					if type(pdata.Client) == "table" then
+						CommandBoxSettingForPlayer = pdata.Client.CommandBoxOnSpawn
+					end
+
+					local CommandBoxOnSpawn
+					if CommandBoxSettingForPlayer ~= nil then -- Player has chosen a custom setting for it so we will use that and ignore the game settings
+						CommandBoxOnSpawn = CommandBoxSettingForPlayer
+					else
+						CommandBoxOnSpawn = Settings.CommandBoxOnSpawn or false
+					end
+
+					if CommandBoxOnSpawn and level > 0 then
+						Remote.MakeGui(p, "CommandBox")
 					end
 
 					if Settings.HelpButton then
@@ -1199,6 +1216,23 @@ return function(Vargs, GetEnv)
 
 				if Settings.HelpButton then
 					Remote.MakeGui(p, "HelpButton")
+				end
+
+				local charPdata = Core.GetPlayer(p)
+				local CommandBoxSettingForPlayer
+				if type(charPdata.Client) == "table" then
+					CommandBoxSettingForPlayer = charPdata.Client.CommandBoxOnSpawn
+				end
+
+				local CommandBoxOnSpawn
+				if CommandBoxSettingForPlayer ~= nil then -- Player has chosen a custom setting for it so we will use that and ignore the game settings
+					CommandBoxOnSpawn = CommandBoxSettingForPlayer
+				else
+					CommandBoxOnSpawn = Settings.CommandBoxOnSpawn or false
+				end
+
+				if CommandBoxOnSpawn and level > 0 then
+					Remote.MakeGui(p, "CommandBox")
 				end
 
 				if level < 1 then

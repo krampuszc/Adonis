@@ -312,7 +312,7 @@ settings.ReJail = false			           -- If true then when a player rejoins they'
 
 settings.Console = true				-- Whether the command console is enabled
 settings.Console_AdminsOnly = false -- If true, only admins will be able to access the console
-
+settings.CommandBoxOnSpawn = false		-- If true, the command box will open automatically when a player spawns
 settings.HelpSystem = true		-- Allows players to call admins for help using !help
 settings.HelpButton = true		-- Shows a little help button in the bottom right corner.
 settings.HelpButtonImage = "rbxassetid://357249130" -- Sets the image used for the Adonis help button above.
@@ -486,6 +486,7 @@ descs.PlayerList = [[ Custom playerlist ]]
 
 descs.Console = [[ Command console ]]
 descs.Console_AdminsOnly = [[ Makes it so if the console is enabled, only admins will see it ]]
+descs.CommandBoxOnSpawn = [[ If true, the command box will open automatically when a player spawns ]]
 
 descs.DonorCommands = [[ Show your support for the script and let donors use commands like !sparkles ]]
 descs.DonorCapes = [[ Determines if donors have capes ]]
@@ -596,6 +597,7 @@ order = {
 	"PlayerList";
 	"Console";
 	"Console_AdminsOnly";
+	"CommandBoxOnSpawn";
 	" ";
 	"HelpSystem";
 	"HelpButton";

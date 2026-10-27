@@ -1838,11 +1838,23 @@ return function(Vargs, env)
 			Prefix = Settings.Prefix;
 			Commands = {"cmdbox", "commandbox"};
 			Args = {};
-			Description = "Command Box";
+			Description = "Opens the command box";
 			Category = "Developer";
 			AdminLevel = "Moderators";
 			Function = function(plr: Player, args: {string})
 				Remote.MakeGui(plr,"CommandBox")
+			end;
+		};
+
+		CommandWindow = {
+			Prefix = Settings.Prefix;
+			Commands = {"cmdwindow", "commandwindow"};
+			Args = {};
+			Description = "Opens the command window";
+			Category = "Developer";
+			AdminLevel = "Moderators";
+			Function = function(plr: Player, args: {string})
+				Remote.MakeGui(plr,"CommandWindow")
 			end;
 		};
 
@@ -2367,10 +2379,10 @@ return function(Vargs, env)
 			Function = function(plr: Player, args: {string})
 				for i = #Variables.InsertedObjects, 1, -1 do
 					local v = Variables.InsertedObjects[i]
-					
+
 					if v and v:GetAttribute("ADONIS_InsertedBy") == plr.Name then
-						if v.Parent then 
-							v:Destroy() 
+						if v.Parent then
+							v:Destroy()
 						end
 						table.remove(Variables.InsertedObjects, i)
 					end
@@ -2391,7 +2403,7 @@ return function(Vargs, env)
 						v:Destroy()
 					end
 				end
-				table.clear(Variables.InsertedObjects) 
+				table.clear(Variables.InsertedObjects)
 			end
 		};
 
@@ -3681,7 +3693,7 @@ return function(Vargs, env)
 				local value = assert(tonumber(args[3]), "")
 				local self = Commands.TransparentPart
 				local TypeInput, ParentDir, GroupPartInputs, PartInputs = self.Vars.TypeInput, self.Vars.ParentDir, self.Vars.GroupPartInputs, self.Vars.PartInputs
-		
+
 				if not args[2] then
 					--// Generate the UI for this player
 					server.Remote.MakeGui(plr, "List", {
@@ -3695,21 +3707,21 @@ return function(Vargs, env)
 							t[string.lower(k)] = v
 						end
 					end
-		
+
 					for _, v in ipairs(PartInputs) do
 						PartInputs[string.lower(v)], PartInputs[v] = v, v
 					end
-		
+
 					self.Vars._converted = true
 				end
-		
+
 				for _, player in service.GetPlayers(plr, args[1]) do
 					local character = player.Character
-		
+
 					if character then
 						local partInput = {}
 						local parts = {}
-		
+
 						for _, v in ipairs(string.split(args[2], ",")) do
 							if v == "all" then
 								partInput = {"all"}
@@ -3717,26 +3729,26 @@ return function(Vargs, env)
 							elseif self.TypeInput[string.lower(v)] then
 								table.insert(partInput, v)
 							end
-		
+
 							local group = self.GroupPartInputs[string.lower(v)]
-		
+
 							if group then
 								for _, name in ipairs(group) do
 									table.insert(partInput, name)
 								end
 							else
 								local name = self.PartInputs[string.lower(v)]
-		
+
 								if name then
 									table.insert(partInput, name)
 								end
 							end
 						end
-		
+
 						for _, v in ipairs(partInput) do
 							local class = self.TypeInput[string.lower(v)]
 							local parent = self.ParentDir[string.lower(v)] and character:FindFirstChild(self.ParentDir[string.lower(v)]) or character
-		
+
 							if class then
 								for _, obj in ipairs(parent:GetChildren()) do
 									if v:IsA(class) then
@@ -3745,13 +3757,13 @@ return function(Vargs, env)
 								end
 							else
 								local found = parent:FindFirstChild(v)
-		
+
 								if found then
 									table.insert(parts, found)
 								end
 							end
 						end
-		
+
 						for _, v in ipairs(parts) do
 							if v:IsA("BasePart") or v:IsA("Decal") then
 								v.Transparency = value
@@ -5658,7 +5670,7 @@ return function(Vargs, env)
 				end
 			end
 		};
-		
+
 		PersistAvatarItem = {
 			Prefix = Settings.Prefix,
 			Commands = {"persistavataritem", "persistcatalogitem", "persistaccessory", "persisthat", "persisttshirt", "persistshirt", "persistpants", "persistface", "persistanim",
@@ -5674,26 +5686,26 @@ return function(Vargs, env)
 				end
 				local apply = args[3]
 				local shouldApply = apply == "true" or apply == "yes" or apply == "1" or apply == "apply"
-				
-				
+
+
 				for _, v in service.GetPlayers(plr, args[1]) do
 					if not Variables.PersistedItems[tostring(v.UserId)] then
 						Variables.PersistedItems[tostring(v.UserId)] = {itemId}
 						continue
 					end
-					
+
 					if table.find(Variables.PersistedItems[tostring(v.UserId)], itemId) then
 						continue
 					end
 					table.insert(Variables.PersistedItems[tostring(v.UserId)], itemId)
 				end
-				
+
 				if shouldApply then
 					server.Commands.AvatarItem.Function(plr, args)
 				end
 			end
 		},
-		
+
 		UnPersistAvatarItem = {
 			Prefix = Settings.Prefix,
 			Commands = {"unpersistavataritem", "unpersistcatalogitem", "unpersistaccessory", "unpersisthat", "unpersisttshirt", "unpersistshirt", "unpersistpants", "unpersistface", "unpersistanim",
@@ -5703,15 +5715,15 @@ return function(Vargs, env)
 			Category = "Appearance";
 			AdminLevel = "Moderators";
 			Function = function(plr: Player, args: {string})
-				
-				
-				
+
+
+
 				local itemName = args[2]:lower()
 				local itemId = tonumber(itemName)
 				if not itemId and itemName ~= "all"then
 					error("Invalid asset ID")
 				end
-				
+
 				for _, v in service.GetPlayers(plr, args[1]) do
 					if not Variables.PersistedItems[tostring(v.UserId)] then
 						continue
@@ -5726,8 +5738,8 @@ return function(Vargs, env)
 					end
 					table.remove(Variables.PersistedItems[tostring(v.UserId)], index)
 				end
-				
-				
+
+
 			end
 		},
 
@@ -7661,7 +7673,7 @@ return function(Vargs, env)
 				local added = 0;
 				for _, player: Player in players do
 					if table.find(tag, player) then continue end;
-				
+
 					table.insert(tag, player);
 					added += 1;
 				end
@@ -7728,7 +7740,7 @@ return function(Vargs, env)
 				if #tag == 0 then
 					Variables.Tags[name] = nil;
 					Functions.Hint(`Tag "{name}" was removed because it was empty`, {plr});
-				end;				
+				end;
 			end
 		};
 

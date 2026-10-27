@@ -897,7 +897,7 @@ return function(data, env)
 				BackgroundTransparency = 1;
 				Font = Enum.Font.SourceSans;
 			})
-			
+
 			local catalogFrame = dFrame:Add("TextLabel", {
 				Text = "Purchase for less in the Roblox catalog";
 				Size = UDim2.new(1, -10, 0, 70);
@@ -942,7 +942,7 @@ return function(data, env)
 
 			setLocalPrice(catalogFrame:FindFirstChild("Tier1"), 6878510605)
 			setLocalPrice(catalogFrame:FindFirstChild("Tier2"), 120289654999943)
-			
+
 			local inGameFrame = dFrame:Add("TextLabel", {
 				Text = "Purchase in-game, get perks instantly";
 				Size = UDim2.new(1, -10, 0, 70);
@@ -1733,6 +1733,21 @@ return function(data, env)
 					Function = function(selection)
 						Variables.HelpButtonAction = selection
 						Remote.Get("UpdateClient", "HelpButtonAction", selection)
+					end
+				};
+				{
+					Text = "Command Box On Spawn: ";
+					Desc = "- Should the command box appear on spawn";
+					Entry = "Boolean";
+					Setting = "CommandBoxOnSpawn";
+					Value = Variables.CommandBoxOnSpawn or false;
+					Function = function(enabled, toggle)
+						Variables.CommandBoxOnSpawn = enabled
+
+						local text = toggle.Text
+						toggle.Text = "Saving.."
+						Remote.Get("UpdateClient", "CommandBoxOnSpawn", enabled)
+						toggle.Text = text
 					end
 				};
 			}
