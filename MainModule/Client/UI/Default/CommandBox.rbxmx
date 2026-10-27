@@ -5,10 +5,10 @@
 	<Item class="ScreenGui" referent="RBX4D426F19055348EEBD8077C81D0F6675">
 		<Properties>
 			<bool name="ClipToDeviceSafeArea">true</bool>
-			<int name="DisplayOrder">50</int>
+			<int name="DisplayOrder">999</int>
 			<token name="SafeAreaCompatibility">1</token>
 			<token name="ScreenInsets">1</token>
-			<bool name="Enabled">true</bool>
+			<bool name="Enabled">false</bool>
 			<bool name="ResetOnSpawn">true</bool>
 			<token name="ZIndexBehavior">0</token>
 			<bool name="AutoLocalize">true</bool>
@@ -55,7 +55,7 @@
 			</Item>
 			<Item class="BoolValue" referent="RBXDE9C111211E149E0A43A773D1E4ACCB8">
 				<Properties>
-					<bool name="Value">true</bool>
+					<bool name="Value">false</bool>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
 					<bool name="DefinesCapabilities">false</bool>
