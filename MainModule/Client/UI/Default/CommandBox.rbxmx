@@ -68,8 +68,7 @@
 			<Item class="ModuleScript" referent="RBX6C104CE3413B43BCB76441AF35464E7D">
 				<Properties>
 					<Content name="LinkedSource"><null></null></Content>
-					<ProtectedString name="Source"><![CDATA[-- Property of ADN
--- Scripted by ARIS Developers
+					<ProtectedString name="Source"><![CDATA[
 client = nil
 cPcall = nil
 Pcall = nil
